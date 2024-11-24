@@ -3,19 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Audio Player</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Link external CSS -->
+    <title>Combined Lofi and Weather Audio</title>
+    <style>
+        #audio-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: start;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    <h1>Custom Audio Player</h1>
-    <audio id="custom-audio" src="https://wxradio.org/AZ-Phoenix-KEC94"></audio>
+    <h1>Weather Radio + Lofi</h1>
 
+    <!-- Audio Sources -->
+    <audio id="weather-audio" src="https://wxradio.org/AZ-Phoenix-KEC94" preload="auto"></audio>
+    <audio id="lofi-audio" src="lofi.mp3" preload="auto"></audio>
+
+    <!-- Controls -->
     <div id="audio-controls">
-        <button id="play-btn">Play</button>
-        <button id="pause-btn">Pause</button>
-        <input id="volume-slider" type="range" min="0" max="1" step="0.1" value="1">
+        <button id="play-btn">Play Both</button>
+        <button id="pause-btn">Pause Both</button>
+        <input id="weather-volume" type="range" min="0" max="1" step="0.1" value="1"> Weather Volume
+        <input id="lofi-volume" type="range" min="0" max="1" step="0.1" value="1"> Lofi Volume
     </div>
 
-    <script src="script.js"></script> <!-- Link external JS -->
+    <script>
+        // Get audio elements
+        const weatherAudio = document.getElementById('weather-audio');
+        const lofiAudio = document.getElementById('lofi-audio');
+
+        // Get controls
+        const playBtn = document.getElementById('play-btn');
+        const pauseBtn = document.getElementById('pause-btn');
+        const weatherVolume = document.getElementById('weather-volume');
+        const lofiVolume = document.getElementById('lofi-volume');
+
+        // Play both audio streams
+        playBtn.addEventListener('click', () => {
+            weatherAudio.play();
+            lofiAudio.play();
+        });
+
+        // Pause both audio streams
+        pauseBtn.addEventListener('click', () => {
+            weatherAudio.pause();
+            lofiAudio.pause();
+        });
+
+        // Adjust individual volumes
+        weatherVolume.addEventListener('input', (e) => {
+            weatherAudio.volume = e.target.value;
+        });
+
+        lofiVolume.addEventListener('input', (e) => {
+            lofiAudio.volume = e.target.value;
+        });
+    </script>
 </body>
 </html>
