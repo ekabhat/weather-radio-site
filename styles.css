@@ -103,6 +103,8 @@ body::before {
     margin-top: 5px; /* Space between the current song and buttons */
 }
 
+/*skip button check
+
 #skip-btn {
     width: 70px; /* Circle button size */
     height: 30px;
