@@ -13,6 +13,9 @@ const lofiVolume = document.getElementById('lofi-volume');
 // Current Song Display
 const songTitle = document.getElementById('song-title');
 
+const additionalText = "AZ-Phoenix-KEC94 | ";
+
+
 // Lofi Playlist
 const lofiPlaylist = [
     { title: "Byakugan Vision - PandaBeats", src: "playlist/Byakugan Vision.mp3" },
@@ -28,7 +31,7 @@ let isPlaying = false; // Track whether audio is playing
 // Load the current song from the playlist
 function loadSong(index) {
     lofiAudio.src = lofiPlaylist[index].src; // Set the audio source
-    songTitle.textContent = lofiPlaylist[index].title; // Update the displayed title
+    songTitle.textContent = additionalText + lofiPlaylist[index].title ; // Update the displayed title
 }
 
 // Play the next song when the current one ends
@@ -49,12 +52,12 @@ playPauseBtn.addEventListener('click', () => {
     if (!isPlaying) {
         weatherAudio.play();
         lofiAudio.play();
-        playPauseIcon.src = 'images/pauseicon.png'; // Change icon to "Pause"
+        playPauseIcon.src = 'images/pauseiconfill.png'; // Change icon to "Pause"
         playPauseIcon.alt = 'Pause';
     } else {
         weatherAudio.pause();
         lofiAudio.pause();
-        playPauseIcon.src = 'images/playicon.png'; // Change icon to "Play"
+        playPauseIcon.src = 'images/playiconfill.png'; // Change icon to "Play"
         playPauseIcon.alt = 'Play';
     }
     isPlaying = !isPlaying; // Toggle play state
@@ -78,12 +81,34 @@ function updateClock() {
     const minutes = String(now.getMinutes()).padStart(2, '0');
     clockElement.textContent = `${hours}:${minutes}`; // Display time in HH:MM format
 }
+const clock = document.getElementById('clock');
+
+// Track mouse movement to update `--mouse-x` and `--mouse-y` CSS variables
+document.addEventListener('mousemove', (e) => {
+    const rect = clock.getBoundingClientRect(); // Get the clock's position
+    const x = e.clientX - rect.left; // X position relative to the clock
+    const y = e.clientY - rect.top; // Y position relative to the clock
+
+    // Set custom properties for CSS
+    clock.style.setProperty('--mouse-x', `${x}px`);
+    clock.style.setProperty('--mouse-y', `${y}px`);
+});
+
+// Update the clock text dynamically
+function updateClock() {
+    const now = new Date();
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    clock.textContent = `${hours}:${minutes}`;
+    clock.setAttribute('data-time', `${hours}:${minutes}`); // For chromatic effect
+}
 
 // Update the clock every second
 setInterval(updateClock, 1000);
+updateClock(); // Initialize on page load
 
-// Initialize the clock on page load
-updateClock();
+
+
 
 // Select all sliders
 const sliders = document.querySelectorAll('input[type="range"]');
@@ -102,3 +127,6 @@ sliders.forEach(slider => {
     // Update background dynamically on input (thumb movement)
     slider.addEventListener('input', () => updateSliderBackground(slider));
 });
+
+
+
