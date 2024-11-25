@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400&display=swap" rel="stylesheet">
+    <title>lofi weather radio</title>
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
 </head>
 <body>
@@ -22,10 +24,16 @@
     <p id="current-song">
         <span id="song-title">Loading Music...</span>
     </p>
-
-    <button id="play-pause-btn">
-        <img id="play-pause-icon" src="images/playiconfill.png" alt="Play">
-    </button>
+    <div id="control-buttons">
+        <button id="play-pause-btn">
+            <img id="play-pause-icon" src="images/playiconfill.png" alt="Play">
+        </button>
+    
+        <button id="skip-btn">
+            <img id="skip-icon" src="images/skip.png" alt="Skip">
+        </button>
+    </div>
+    
 
     <!-- Controls -->
     <div id="audio-controls">

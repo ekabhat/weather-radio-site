@@ -5,6 +5,8 @@ const lofiAudio = document.getElementById('lofi-audio');
 // Play/Pause Button Elements
 const playPauseBtn = document.getElementById('play-pause-btn');
 const playPauseIcon = document.getElementById('play-pause-icon');
+const skipBtn = document.getElementById('skip-btn');
+
 
 // Volume Control Sliders
 const weatherVolume = document.getElementById('weather-volume');
@@ -61,6 +63,18 @@ playPauseBtn.addEventListener('click', () => {
         playPauseIcon.alt = 'Play';
     }
     isPlaying = !isPlaying; // Toggle play state
+});
+
+skipBtn.addEventListener('click', () => {
+    playNextSong(); // Call the playNextSong function
+    if (!isPlaying) {
+        // If playback isn't active, start playback
+        lofiAudio.play();
+        weatherAudio.play();
+        playPauseIcon.src = 'images/pauseiconfill.png'; // Change icon to "Pause"
+        playPauseIcon.alt = 'Pause';
+        isPlaying = true; // Update the playback state
+    }
 });
 
 // Adjust volume for weather audio
