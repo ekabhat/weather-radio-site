@@ -5,25 +5,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Combined Lofi and Weather Audio</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400&display=swap" rel="stylesheet">
+
 </head>
 <body>
-    <div id="content-box">
-        <h1 style="color: white;">Weather Radio + Lofi</h1>
+    <!-- Audio Sources -->
+    <audio id="weather-audio" src="https://wxradio.org/AZ-Phoenix-KEC94" preload="auto"></audio>
+    <audio loop id="lofi-audio" preload="auto"></audio> <!-- Dynamically controlled -->
 
-        <!-- Audio Sources -->
-        <audio id="weather-audio" src="https://wxradio.org/AZ-Phoenix-KEC94" preload="auto"></audio>
-        <audio loop id="lofi-audio" src="lofi.mp3" preload="auto"></audio>
+    <div id="clock"></div>
 
-        <!-- Controls -->
-        <div id="audio-controls">
-            <button id="play-btn">Play</button>
-            <button id="pause-btn">Pause</button>
-            <input id="weather-volume" type="range" min="0" max="1" step="0.1" value="1" aria-label="Weather Volume">
-            <input id="lofi-volume" type="range" min="0" max="1" step="0.1" value="1" aria-label="Lofi Volume">
-        </div>
+    <p id="middle-text">Lofi Weather</p>
 
+    <!-- Current Song Display -->
+    <p id="current-song">
+        <span id="song-title">Loading Music...</span>
+    </p>
+
+    <button id="play-pause-btn">
+        <img id="play-pause-icon" src="images/playicon.png" alt="Play">
+    </button>
+
+    <!-- Controls -->
+    <div id="audio-controls">
+        <p id="weather-volume-text" style="color: white;">Weather Volume</p>
+        <input id="weather-volume" type="range" min="0" max="1" step="0.1" value="1" aria-label="Weather Volume">
+        <p id="lofi-volume-text" style="color: white;">Lofi Volume</p>
+        <input id="lofi-volume" type="range" min="0" max="1" step="0.1" value="1" aria-label="Lofi Volume">
     </div>
-
 
     <script src="script.js"></script>
 </body>
